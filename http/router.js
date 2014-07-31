@@ -2,7 +2,12 @@
  * Created by Administrator on 14-6-30.
  */
 var fs=require("fs");
+var querystring=require("querystring");
 module.exports=function(pathname,req,res){
+    console.log("req method:"+req.method);
+    if(pathname=="/favicon.ico"){
+        return;
+    }
     if(pathname=="/ssd"){
         res.write(renderPage());
         return;
@@ -11,16 +16,22 @@ module.exports=function(pathname,req,res){
         res.write("saw");
         return;
     }
-    if(pathname=="/upload"){
-        var data;
+    if(pathname=="/upload"&&req.method.toLowerCase()=="post"){
+        var data="";
         req.setEncoding("utf8");
         req.addListener("data",function(trunk){
             data+=trunk;
-            console.log(trunk);
+            console.log("trunk:"+trunk);
         });
+        req.addListener("end",function(){
+
+            console.log("data:"+querystring.parse(data).text);
+        });
+
         return;
     }
     else{
+        console.log("asdsaaa");
         res.write("404 not found!");
     }
 }
