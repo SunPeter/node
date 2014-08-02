@@ -2,7 +2,7 @@
  * Created by peter on 14-7-31.
  */
 var fs=require("fs");
-fs.unlink("test/link.js",function(err){
+fs.link("test/file.txt","test/filelink.txt",function(err){
     if(!err){
         console.log("done");
     }
@@ -10,3 +10,5 @@ fs.unlink("test/link.js",function(err){
         console.error("err");
     }
 });
+
+//unlink
