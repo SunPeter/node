@@ -6,7 +6,11 @@ var router=require("./router");
 var url=require("url");
 module.exports=function(){
     http.createServer(function(req,res){
-        res.writeHead(200,{"Content-Type":"text/html"});
+        res.writeHead(200,{
+            "Content-Type":"text/html",
+            "Cache-Control": "no-cache",
+            "Server":"nodejs"
+        });
         var pathname=url.parse(req.url).pathname;
         router(pathname,req,res);
         res.end();
