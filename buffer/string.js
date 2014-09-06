@@ -3,3 +3,4 @@
  */
 var buf=new Buffer("ssd","utf8");
 console.log(buf);
+

@@ -42,6 +42,11 @@ var server=http.createServer(function(req,res){
                 }
                 else{
                     /*
+                     gzip
+                     */
+                    var acceptEncoding = req.headers['accept-encoding'] || "";
+                    console.log(acceptEncoding);
+                    /*
                     cache
                      */
                     if(filetype.match(config.fileMatch)){
